@@ -26,4 +26,4 @@ $(OUTPUT_SV): $(OBJECTS_SV)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJECTS_SV) $(OBJECTS_CL) $(OUTPUT_SV) $(OUTPUT_CL)
