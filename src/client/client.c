@@ -83,6 +83,8 @@ int main(int argc, char** argv) {
 
 		/* we send over a time in UTC */
 		datestr = asctime(gmtime(&target));
+
+		if (datestr[strlen(datestr) - 1] == '\n') datestr[strlen(datestr) - 1] = 0;
 	}
 
 	port = NULL;
@@ -174,7 +176,7 @@ int main(int argc, char** argv) {
 
 	/* send over an If-Modified-Since header if we need to */
 	if (ims_str) {
-		const char* ims_pre = "If-Modified-Since: ", *ims_post = "\r\n";
+		const char* ims_pre = "If-Modified-Since: ", *ims_post = " GMT\r\n";
 		write(s_remote, ims_pre, strlen(ims_pre));
 		write(s_remote, datestr, strlen(datestr));
 		write(s_remote, ims_post, strlen(ims_post));
